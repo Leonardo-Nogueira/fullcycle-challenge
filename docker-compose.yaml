@@ -1,0 +1,60 @@
+version: '3'
+
+services:
+
+  nginx:
+    # Dockerfile do nginx 
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: nginx
+    networks: 
+      - node-network
+    ports:
+      - 8080:80   
+    depends_on:
+      - node
+      - mysql   
+
+  node:
+  # Dockerfile do node
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+    container_name: node
+    # Rodando npm install para instalar o express e gerar o node_modules e executando o node index.js 
+    # Instalando também o mysql para que o node possa fazer requisição no banco de dados depois que
+    # estiver de pé
+    entrypoint: dockerize -wait tcp://mysql:3306 timeout 200s docker-entrypoint.sh sh -c "npm install express && npm install mysql && npm install body-parser && node index.js"
+    networks:
+      - node-network
+    volumes:
+      - ./node:/usr/src/app
+    tty: true
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql  
+
+  mysql:
+    image: mysql:5.7
+    command: --innodb-use-native-aio=0
+    container_name: mysql
+    restart: always
+    tty: true
+    volumes:
+     - ./initInsert:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_DATABASE=nodedb
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin
+      - MYSQL_ROOT_USER=root
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"  
+    networks: 
+      - node-network
+
+networks:
+  node-network:
+    driver: bridge          
