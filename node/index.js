@@ -19,15 +19,6 @@ app.get( '/', (req, res) => {
     getAllNomes(res,mySqlConnection);
 })
 
-app.post('/nomes',(req,res) =>{
-    const mySqlConnection = mysql.createConnection(config);
-    console.log(req.body.name)
-    const INSERT_QUERY = `INSERT INTO people(nome) VALUES('${req.body.name}')`;
-    mySqlConnection.query(INSERT_QUERY, (error, results) => {
-    getAllNomes(res,mySqlConnection);
-    });
-})
-
 function getAllNomes(res, mySqlConnection) {
     const QUERY = `SELECT id, nome FROM people`;
   
@@ -45,11 +36,6 @@ function getAllNomes(res, mySqlConnection) {
         .join('');
 
       const row = `
-        <form method="POST">
-          <input type="text" name="name">
-          <button formaction="http://localhost:3000/nomes">INCLUIR</button>
-        </form>
-
         <table border="1">
           <tr>
             <th>Id da pessoa </th>
