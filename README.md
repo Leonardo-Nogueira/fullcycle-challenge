@@ -26,24 +26,17 @@ docker-compose up -d
 
 # Como executar o projeto
 
-1. Primeiro você deve criar uma network para que os containers possam se comunicar entre si:
-
-```bash
-docker network create app-node-network
-```
-
-2. Agora basta executar o comando `docker-compose` para subir os containers:
+1. Agora basta executar o comando `docker-compose` para subir os containers:
 
 ```bash
 docker-compose up -d
 ```
 
-3. `Espere alguns segundos para o projeto subir sequencialmente com o dockerize` 
+2. `Espere alguns segundos para o projeto subir sequencialmente com o dockerize` 
 
 
 
-
-4. Agora basta acessar a aplicação em seu browser:
+3. Agora basta acessar a aplicação em seu browser:
 
 ```bash
 http://localhost:8080
