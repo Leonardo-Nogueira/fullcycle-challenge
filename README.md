@@ -10,6 +10,12 @@ O retorno da aplicação Node.js para o nginx deverá ser:
 
 ```html
 <h1>Full Cycle Rocks!</h1>
+| ID PESSOA     | NOME PESSOA   |
+| ------------- | ------------- |
+| 1             | LEONARDO      |
+| 2             | JOAO          |
+| 3             | LETICIA       |
+| 4             | RAFAEL        |
 ```
 
 Gere o `docker-compose` de uma forma que basta apenas rodarmos que tudo deverá estar funcionando e disponível na porta: 8080.
