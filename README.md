@@ -9,7 +9,7 @@ Repositório responsável pelo desafio de Nginx com Node usando Docker do curso 
 O retorno da aplicação Node.js para o nginx deverá ser:
 
 ```html
-<h1>Full Cycle Rocks!</h1>
+Full Cycle Rocks!
 | ID PESSOA     | NOME PESSOA   |
 | ------------- | ------------- |
 | 1             | LEONARDO      |
